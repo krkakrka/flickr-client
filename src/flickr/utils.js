@@ -1,10 +1,11 @@
 const DOMAIN = 'https://www.flickr.com/services/rest/';
+const API_KEY = 'b96ed8895f6fed914c59193d3b67d3b3';
 const QUERY = {
   method: 'flickr.photos.getRecent',
-  api_key: 'b96ed8895f6fed914c59193d3b67d3b3',
+  api_key: API_KEY,
   format: 'json',
   nojsoncallback: 1,
-  per_page: 5,
+  per_page: 10,
   extras: 'owner_name,url_n'
 };
 

@@ -20,10 +20,10 @@ describe('queryToQueryParams', () => {
 
 describe('getPageQuery', () => {
   it('should handle no page input', () => {
-    expect(getPageQuery()).toBe('https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=b96ed8895f6fed914c59193d3b67d3b3&format=json&nojsoncallback=1&per_page=5&extras=owner_name,url_n&page=1');
+    expect(getPageQuery()).toBe('https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=b96ed8895f6fed914c59193d3b67d3b3&format=json&nojsoncallback=1&per_page=10&extras=owner_name,url_n&page=1');
   });
   it('should update query with different page', () => {
-    expect(getPageQuery(2)).toBe('https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=b96ed8895f6fed914c59193d3b67d3b3&format=json&nojsoncallback=1&per_page=5&extras=owner_name,url_n&page=2');
+    expect(getPageQuery(2)).toBe('https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=b96ed8895f6fed914c59193d3b67d3b3&format=json&nojsoncallback=1&per_page=10&extras=owner_name,url_n&page=2');
   });
 });
 

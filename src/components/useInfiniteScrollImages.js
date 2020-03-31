@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { fetchPage } from '../flickr';
 
+const FETCH_MARGIN = 300;
+
 function mergeImages(images1, images2) {
   const ids1 = new Set (images1.map(img => img.id));
   const newImages = images2.filter(img2 => !ids1.has(img2.id));
@@ -14,9 +16,8 @@ function useScrollToBottom(onScrollBottom) {
       const hiddenTopHeight = document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
 
-      const fetchMargin = 100;
       const windowBottom = hiddenTopHeight + windowHeight;
-      const isCloseToBottom = (fullHeight - windowBottom) < fetchMargin;
+      const isCloseToBottom = (fullHeight - windowBottom) < FETCH_MARGIN;
 
       if (isCloseToBottom) {
         onScrollBottom({ fullHeight, hiddenTopHeigh: hiddenTopHeight, windowHeight});

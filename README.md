@@ -1,5 +1,32 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Flickr client
+
+Simple flickr client with infinite scrolling, responsive design, tests, hooks...
+
+### Features and notes
+- Uses [flickrapi](https://www.flickr.com/services/api/flickr.photos.getRecent.html), needs an API key to work.
+In case it expires, generate a new one and replace in `src/flickr/utils.js` has an `API_KEY` constant.
+- Infinite scroll. `src/components/useInfiniteScrollImages.js` has a `FETCH_MARGIN` constant (tells when to fetch new images).
+- Responsive layout, breakpoints at `600px` and `960px`.
+- Can hover over items, get details and favourite them. Favourites persist accross sessions. However, can only be viewed in localStorage.
+
+### Todos
+- A way to view favourites?
+- Move important constants to global config file (like api key).
+- Change public images, logos, favico.
+- Responsive images (flickr api supports image sizes via `extras` query param. Use different urls based on device/network/screen size).
+- Lazy loading images (only applicable when the response pages are bigger. Download first, but only render when almost visible).
+- Prettier loading and errors.
+- Move fixtures to it's own dir, name better.
+- client api error tests.
+- prettier ImageGridList.spec.js.
+- shared css variables?
+- Decouple logic from React?
+- SCSS?
+- Fallback image for when flickr url is empty.
+- Fix minor warning in the console.
+
 ## Available Scripts
 
 In the project directory, you can run:
