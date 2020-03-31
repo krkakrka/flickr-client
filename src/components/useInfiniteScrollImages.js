@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { fetchPage } from '../flickr';
 
+function mergeImages(images1, images2) {
+  const ids1 = new Set (images1.map(img => img.id));
+  const newImages = images2.filter(img2 => !ids1.has(img2.id));
+  return images1.concat(newImages);
+}
+
 function useScrollToBottom(onScrollBottom) {
   useEffect(() => {
     const maybeScrolledToBottom = () => {
@@ -29,19 +35,20 @@ function useScrollToBottom(onScrollBottom) {
 
 function useInfiniteScrollImages() {
   const [images, setImages] = useState([]);
-  const [pagination, setPagination] = useState({ page: 1, pages: 0 });
+  const [pagination, setPagination] = useState(null);
   const [isFetchingImages, setIsFetchingImages] = useState(false);
   const [error, setError] = useState(null);
 
   const maybeFetchNextImagePage = () => {
-    const isLastPage = pagination.page === pagination.pages;
+    const isLastPage = pagination ? pagination.page === pagination.pages : false;
     if (!isFetchingImages && !isLastPage) {
       setIsFetchingImages(true);
       setError(null);
 
-      fetchPage(pagination.page)
+      const page = pagination ? pagination.page + 1 : 1;
+      fetchPage(page)
         .then(({ photos, ...pagination }) => {
-          setImages(images => images.concat(photos));
+          setImages(prevImages => mergeImages(prevImages, photos));
           setPagination(pagination);
           setIsFetchingImages(false);
         })
