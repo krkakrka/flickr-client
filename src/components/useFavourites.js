@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-const initialFavouritesRaw = window.localStorage.getItem('favourites');
+const FAVOURITES = 'favourites';
+const initialFavouritesRaw = window.localStorage.getItem(FAVOURITES);
 const initialFavourites = initialFavouritesRaw ? JSON.parse(initialFavouritesRaw) : [];
 
 function withoutImage(favourites, image) {
@@ -16,7 +17,7 @@ function useFavourites() {
   const toggleFavourite = (image) => {
     const newFavourites = isFavourite(image) ? withoutImage(favourites, image) : [...favourites, image];
     setFavourites(newFavourites);
-    window.localStorage.setItem('favourites', JSON.stringify(newFavourites));
+    window.localStorage.setItem(FAVOURITES, JSON.stringify(newFavourites));
   };
 
   return [favourites, toggleFavourite, isFavourite];
