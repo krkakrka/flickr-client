@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Image.module.css';
 
-function Image({ flickrImage, className = '' }) {
+function Image({ flickrImage, isFavourite, onFavourite, className = '' }) {
   const { title, owner, img } = flickrImage;
 
   return (
@@ -10,7 +10,12 @@ function Image({ flickrImage, className = '' }) {
         <div>{title || '-'}</div>
         <hr className={styles.container__divider} />
         <div>{owner || '-'}</div>
-        <button className={styles.container__favourite}>Favourite</button>
+        <button
+          className={`${styles.container__favourite} ${isFavourite ?  styles.container__unfavourite : '' }`}
+          onClick={onFavourite}
+        >
+          {isFavourite ? 'Unfavourite' : 'Favourite'}
+        </button>
       </div>
       <img
         className={styles.container__image}

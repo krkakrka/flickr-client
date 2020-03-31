@@ -40,10 +40,14 @@
   border: 1px solid rgba(235, 235, 235, 0.8);
   color: white;
   transition: background-color, color 0.2s;
+  cursor: pointer;
 }
 
 .container__favourite:hover {
   background-color: white;
   color: rgba(0,0,0,1);
-  cursor: pointer;
+}
+
+.container__unfavourite:hover {
+  background-color: red;
 }
