@@ -7,7 +7,7 @@ function Image({ flickrImage }) {
     <div className={styles.image}>
       <div>{title}</div>
       <div>{owner}</div>
-      <img src={img} />
+      <img src={img} alt="flickr" />
     </div>
   );
 }
